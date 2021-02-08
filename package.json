@@ -2,6 +2,7 @@
   "name": "react-firebase",
   "version": "0.1.0",
   "private": true,
+  "author": "Marwan Alsaydali",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -11,6 +12,9 @@
     "react-scripts": "4.0.2",
     "web-vitals": "^1.1.0"
   },
+  "keywords": [
+    "JavaScript", "ReactJs", "Firebase", "React-Router"
+  ],
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
