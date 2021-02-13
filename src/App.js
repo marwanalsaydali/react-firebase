@@ -5,6 +5,8 @@ import Store from "./components/store";
 import Order from "./components/order";
 import Inventory from "./components/inventory";
 
+import fishes from "./sample-fishes";
+
 import "./App.css";
 class App extends React.Component {
   state = {
@@ -19,13 +21,25 @@ class App extends React.Component {
     // set the new state
     this.setState({ fishes: fishes });
   };
+  addToOrder = (key) => {
+    // copy the order state
+    const order = { ...this.state.order };
+    order[key] = order[key] + 1 || 1;
+    this.setState({ order });
+  };
+  addFishSample = () => {
+    this.setState({ fishes: fishes });
+  };
   render() {
     return (
       <Layout>
         <div className="dashboard">
-          <Store />
-          <Order />
-          <Inventory addFish={this.addFish} />
+          <Store fishes={this.state.fishes} addToOrder={this.addToOrder} />
+          <Order fishes={this.state.fishes} order={this.state.order} />
+          <Inventory
+            addFish={this.addFish}
+            addFishSample={this.addFishSample}
+          />
         </div>
       </Layout>
     );
