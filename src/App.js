@@ -6,13 +6,38 @@ import Order from "./components/order";
 import Inventory from "./components/inventory";
 
 import fishes from "./sample-fishes";
-
+import base from "../src/base";
 import "./App.css";
 class App extends React.Component {
   state = {
     fishes: {},
     order: {},
   };
+
+  componentDidMount() {
+    const { params } = this.props.match;
+    // reonstate localstorge
+    const localStorageRef = localStorage.getItem(params.storeId);
+    if (localStorageRef) {
+      this.setState({
+        order: JSON.parse(localStorageRef),
+      });
+    }
+    this.ref = base.syncState(`${params.storeId}/fishes`, {
+      context: this,
+      state: "fishes",
+    });
+  }
+  componentDidUpdate() {
+    console.log(this.state.order);
+    localStorage.setItem(
+      this.props.match.params.storeId,
+      JSON.stringify(this.state.order)
+    );
+  }
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
   addFish = (fish) => {
     // first copy what in the state
     const fishes = { ...this.state.fishes };
