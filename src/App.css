@@ -94,3 +94,15 @@ nav div svg {
     transform: rotate(360deg);
   }
 }
+
+.fish {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: repeat(1fr, 4);
+}
+.fish img {
+  grid-row: span 4;
+  object-fit: fill;
+  object-position: center;
+  width: 100%;
+}
