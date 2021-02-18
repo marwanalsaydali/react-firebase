@@ -7,7 +7,7 @@ const Fish = (props) => {
     props.addToOrder(props.index);
   };
   return (
-    <li>
+    <li className="fish">
       <img src={image} />
       <h3>{name}</h3>
       <span>{price}</span>
