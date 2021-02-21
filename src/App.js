@@ -52,16 +52,44 @@ class App extends React.Component {
     order[key] = order[key] + 1 || 1;
     this.setState({ order });
   };
+  removeFromOrder = (key) => {
+    // copy the order state
+    const order = { ...this.state.order };
+    delete order[key];
+    this.setState({ order });
+  };
   addFishSample = () => {
     this.setState({ fishes: fishes });
+  };
+  deleteFish = (key) => {
+    // copy the state
+    const fishes = { ...this.state.fishes };
+    // remove that fish from it
+    fishes[key] = null;
+    // re push it
+    this.setState({ fishes });
+  };
+  updateFish = (key, updatedFish) => {
+    // copy the state
+    const fishes = { ...this.state.fishes };
+    // update the key
+    fishes[key] = updatedFish;
+    // push back the state
+    this.setState({ fishes });
   };
   render() {
     return (
       <Layout>
         <div className="dashboard">
           <Store fishes={this.state.fishes} addToOrder={this.addToOrder} />
-          <Order fishes={this.state.fishes} order={this.state.order} />
+          <Order
+            fishes={this.state.fishes}
+            order={this.state.order}
+            removeFromOrder={this.removeFromOrder}
+          />
           <Inventory
+            updateFish={this.updateFish}
+            deleteFish={this.deleteFish}
             fishes={this.state.fishes}
             addFish={this.addFish}
             addFishSample={this.addFishSample}
