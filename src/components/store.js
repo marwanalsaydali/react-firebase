@@ -4,7 +4,7 @@ class Store extends React.Component {
   render() {
     return (
       <>
-        <div className="store">
+        <div className="store bg-white">
           {Object.keys(this.props.fishes).map((key) => (
             <Fish
               index={key}
